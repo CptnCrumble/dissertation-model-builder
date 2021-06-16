@@ -1,0 +1,1 @@
+exports.dataSpec = require('./dataSpec');

@@ -1,0 +1,33 @@
+GET http://localhost:3000/preprocessing/dataSpec
+###
+
+PUT http://localhost:3000/preprocessing/dataSpec
+Content-Type: application/json
+
+{
+    "subject": "Anxiety",
+    "source": [
+        "HADS-TENSE",
+        "HADS-ENJOY",
+        "HADS-FRIGHT",
+        "HADS-LAUGH",
+        "HADS-WORRY",
+        "HADS-CHEER",
+        "HADS-EASE",
+        "HADS-SLOW",
+        "HADS-BUTTERFLY",
+        "HADS-INTEREST",
+        "HADS-RESTLESS",
+        "HADS-FORWARD",
+        "HADS-PANIC",
+        "HADS-BOOK"
+    ]
+}
+
+###
+PUT http://localhost:3000/preprocessing/dataSpec
+Content-Type: application/json
+
+{
+    "bum": "face"
+}
