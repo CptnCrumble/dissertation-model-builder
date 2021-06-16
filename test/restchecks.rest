@@ -31,3 +31,30 @@ Content-Type: application/json
 {
     "bum": "face"
 }
+
+###
+GET http://localhost:3000/preprocessing/validData
+
+###
+PUT http://localhost:3000/preprocessing/validData
+Content-Type: application/json
+
+{
+    "subject": "Anxiety",
+    "source": [
+        "HADS-TENSE",
+        "HADS-ENJOY",
+        "HADS-FRIGHT",
+        "HADS-LAUGH",
+        "HADS-WORRY",
+        "HADS-CHEER",
+        "HADS-EASE",
+        "HADS-SLOW",
+        "HADS-BUTTERFLY",
+        "HADS-INTEREST",
+        "HADS-RESTLESS",
+        "HADS-FORWARD",
+        "HADS-PANIC",
+        "HADS-BOOK"
+    ]
+}

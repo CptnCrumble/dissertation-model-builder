@@ -18,7 +18,21 @@ app.put("/preprocessing/dataSpec", (req,res) => {
         prp.dataSpec.putDataSpec(req.body);
         res.statusCode = 200;
     } catch (error) {
-        console.log('error updating data spec');
+        console.log('error updating data spec: '+ error);
+        res.statusCode = 400;
+    }
+})
+
+app.get("/preprocessing/validData", (req,res) => {
+    res.json(prp.validation.getValidData());
+})
+
+app.put("/preprocessing/validData", (req,res) => {
+    try {
+        prp.validation.putValidData(req.body);
+        res.statusCode = 200;
+    } catch (error) {
+        console.log('error generating validated data: ' + error)
         res.statusCode = 400;
     }
 })
