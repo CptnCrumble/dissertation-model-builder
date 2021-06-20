@@ -58,3 +58,234 @@ Content-Type: application/json
         "HADS-BOOK"
     ]
 }
+
+###
+
+GET http://localhost:3000/preprocessing/trainTest
+Content-Type: application/json
+
+{
+    "number":1,
+    "timepoint":0,
+    "data":
+    [
+    {
+        "Number": 1,
+        "Timepoint": 0,
+        "HADS-TENSE": 1,
+        "HADS-ENJOY": 1,
+        "HADS-FRIGHT": 2,
+        "HADS-LAUGH": 1,
+        "HADS-WORRY": 1,
+        "HADS-CHEER": 0,
+        "HADS-EASE": 2,
+        "HADS-SLOW": 1,
+        "HADS-BUTTERFLY": 0,
+        "HADS-INTEREST": 2,
+        "HADS-RESTLESS": 2,
+        "HADS-FORWARD": 1,
+        "HADS-PANIC": 0,
+        "HADS-BOOK": 1,
+        "Anxiety": 8
+    },
+    {
+        "Number": 1,
+        "Timepoint": 1,
+        "HADS-TENSE": 1,
+        "HADS-ENJOY": 1,
+        "HADS-FRIGHT": 0,
+        "HADS-LAUGH": 1,
+        "HADS-WORRY": 0,
+        "HADS-CHEER": 0,
+        "HADS-EASE": 1,
+        "HADS-SLOW": 1,
+        "HADS-BUTTERFLY": 0,
+        "HADS-INTEREST": 1,
+        "HADS-RESTLESS": 2,
+        "HADS-FORWARD": 0,
+        "HADS-PANIC": 0,
+        "HADS-BOOK": 0,
+        "Anxiety": 4
+    },
+    {
+        "Number": 1,
+        "Timepoint": 2,
+        "HADS-TENSE": 1,
+        "HADS-ENJOY": 1,
+        "HADS-FRIGHT": 2,
+        "HADS-LAUGH": 1,
+        "HADS-WORRY": 1,
+        "HADS-CHEER": 0,
+        "HADS-EASE": 1,
+        "HADS-SLOW": 1,
+        "HADS-BUTTERFLY": 1,
+        "HADS-INTEREST": 1,
+        "HADS-RESTLESS": 2,
+        "HADS-FORWARD": 2,
+        "HADS-PANIC": 1,
+        "HADS-BOOK": 1,
+        "Anxiety": 9
+    },
+    {
+        "Number": 2,
+        "Timepoint": 0,
+        "HADS-TENSE": 0,
+        "HADS-ENJOY": 3,
+        "HADS-FRIGHT": 0,
+        "HADS-LAUGH": 1,
+        "HADS-WORRY": 1,
+        "HADS-CHEER": 0,
+        "HADS-EASE": 0,
+        "HADS-SLOW": 3,
+        "HADS-BUTTERFLY": 1,
+        "HADS-INTEREST": 0,
+        "HADS-RESTLESS": 0,
+        "HADS-FORWARD": 2,
+        "HADS-PANIC": 0,
+        "HADS-BOOK": 0,
+        "Anxiety": 2
+    },
+    {
+        "Number": 2,
+        "Timepoint": 1,
+        "HADS-TENSE": 1,
+        "HADS-ENJOY": 1,
+        "HADS-FRIGHT": 0,
+        "HADS-LAUGH": 2,
+        "HADS-WORRY": 2,
+        "HADS-CHEER": 0,
+        "HADS-EASE": 0,
+        "HADS-SLOW": 2,
+        "HADS-BUTTERFLY": 0,
+        "HADS-INTEREST": 0,
+        "HADS-RESTLESS": 0,
+        "HADS-FORWARD": 0,
+        "HADS-PANIC": 0,
+        "HADS-BOOK": 0,
+        "Anxiety": 3
+    }]}
+
+###
+GET http://localhost:3000/preprocessing/tfprep
+Content-Type: application/json
+
+{
+    "dataSpec": {
+        "subject": "Anxiety",
+        "source": [
+            "HADS-TENSE",
+            "HADS-ENJOY",
+            "HADS-FRIGHT",
+            "HADS-LAUGH",
+            "HADS-WORRY",
+            "HADS-CHEER",
+            "HADS-EASE",
+            "HADS-SLOW",
+            "HADS-BUTTERFLY",
+            "HADS-INTEREST",
+            "HADS-RESTLESS",
+            "HADS-FORWARD",
+            "HADS-PANIC",
+            "HADS-BOOK"
+        ]
+    },
+    "trainTest": {
+        "testData": {
+            "Number": 1,
+            "Timepoint": 0,
+            "HADS-TENSE": 1,
+            "HADS-ENJOY": 1,
+            "HADS-FRIGHT": 2,
+            "HADS-LAUGH": 1,
+            "HADS-WORRY": 1,
+            "HADS-CHEER": 0,
+            "HADS-EASE": 2,
+            "HADS-SLOW": 1,
+            "HADS-BUTTERFLY": 0,
+            "HADS-INTEREST": 2,
+            "HADS-RESTLESS": 2,
+            "HADS-FORWARD": 1,
+            "HADS-PANIC": 0,
+            "HADS-BOOK": 1,
+            "Anxiety": 8
+        },
+        "trainingData": [
+            {
+            "Number": 1,
+            "Timepoint": 1,
+            "HADS-TENSE": 1,
+            "HADS-ENJOY": 1,
+            "HADS-FRIGHT": 0,
+            "HADS-LAUGH": 1,
+            "HADS-WORRY": 0,
+            "HADS-CHEER": 0,
+            "HADS-EASE": 1,
+            "HADS-SLOW": 1,
+            "HADS-BUTTERFLY": 0,
+            "HADS-INTEREST": 1,
+            "HADS-RESTLESS": 2,
+            "HADS-FORWARD": 0,
+            "HADS-PANIC": 0,
+            "HADS-BOOK": 0,
+            "Anxiety": 4
+            },
+            {
+            "Number": 1,
+            "Timepoint": 2,
+            "HADS-TENSE": 1,
+            "HADS-ENJOY": 1,
+            "HADS-FRIGHT": 2,
+            "HADS-LAUGH": 1,
+            "HADS-WORRY": 1,
+            "HADS-CHEER": 0,
+            "HADS-EASE": 1,
+            "HADS-SLOW": 1,
+            "HADS-BUTTERFLY": 1,
+            "HADS-INTEREST": 1,
+            "HADS-RESTLESS": 2,
+            "HADS-FORWARD": 2,
+            "HADS-PANIC": 1,
+            "HADS-BOOK": 1,
+            "Anxiety": 9
+            },
+            {
+            "Number": 2,
+            "Timepoint": 0,
+            "HADS-TENSE": 0,
+            "HADS-ENJOY": 3,
+            "HADS-FRIGHT": 0,
+            "HADS-LAUGH": 1,
+            "HADS-WORRY": 1,
+            "HADS-CHEER": 0,
+            "HADS-EASE": 0,
+            "HADS-SLOW": 3,
+            "HADS-BUTTERFLY": 1,
+            "HADS-INTEREST": 0,
+            "HADS-RESTLESS": 0,
+            "HADS-FORWARD": 2,
+            "HADS-PANIC": 0,
+            "HADS-BOOK": 0,
+            "Anxiety": 2
+            },
+            {
+            "Number": 2,
+            "Timepoint": 1,
+            "HADS-TENSE": 1,
+            "HADS-ENJOY": 1,
+            "HADS-FRIGHT": 0,
+            "HADS-LAUGH": 2,
+            "HADS-WORRY": 2,
+            "HADS-CHEER": 0,
+            "HADS-EASE": 0,
+            "HADS-SLOW": 2,
+            "HADS-BUTTERFLY": 0,
+            "HADS-INTEREST": 0,
+            "HADS-RESTLESS": 0,
+            "HADS-FORWARD": 0,
+            "HADS-PANIC": 0,
+            "HADS-BOOK": 0,
+            "Anxiety": 3
+            }
+        ]
+        }
+}

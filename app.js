@@ -37,4 +37,25 @@ app.put("/preprocessing/validData", (req,res) => {
     }
 })
 
+app.get("/preprocessing/trainTest", (req,res) => {
+    try {
+        let x = req.body;
+        res.json( prp.trainTest.splitData(x['number'],x['timepoint'],x['data']));
+        res.statusCode = 200;
+    } catch (error) {
+        console.log('error performing requested data splitting' + error);
+        res.statusCode = 400;
+    }
+})
+
+app.get("/preprocessing/tfprep", (req,res) => {
+    try {
+        res.json(prp.tfprep.convertToTensor(req.body['trainTest'],req.body['dataSpec']));
+        res.statusCode = 200;
+    } catch (error) {
+        console.log('error converting to tensors' + error)
+        res.statusCode = 400;
+    }
+})
+
 app.listen(port, () => console.log('app is up'));
