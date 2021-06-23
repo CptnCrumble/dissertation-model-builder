@@ -99,7 +99,7 @@
                   </button>
                 </h2>
                 <div id="collapse8" class="accordion-collapse collapse" aria-labelledby="wearable-accordian" data-bs-parent="#accordionExample">
-                  <div class="accordion-body" id="wear-param-fill">                    
+                  <div class="accordion-body" id="wearables-param-fill">                    
                   </div>
                 </div>
               </div>
@@ -358,38 +358,22 @@
             })
         }
 
-        var nmsChecks = ['<button type="button" class="btn btn-primary" onClick="allCheck(nms)">Check Switch</button>'];        
-        createChecks(nms,nmsChecks);
-        var nmsHTML = nmsChecks.join('\n')
-        var nmsFill = document.getElementById("nms-param-fill");
-        nmsFill.innerHTML = nmsHTML;
-        // ---
-        var hadsChecks = ['<button type="button" class="btn btn-primary" onClick="allCheck(hads)">Check Switch</button>'];
-        createChecks(hads,hadsChecks);
-        document.getElementById("hads-param-fill").innerHTML = hadsChecks.join('\n');
-        // ---
-        var pdssChecks = ['<button type="button" class="btn btn-primary" onClick="allCheck(pdss)">Check Switch</button>'];
-        createChecks(pdss,pdssChecks);
-        document.getElementById("pdss-param-fill").innerHTML = pdssChecks.join('\n');
-        // ---
-        var updrsChecks = ['<button type="button" class="btn btn-primary" onClick="allCheck(updrs)">Check Switch</button>'];
-        createChecks(updrs,updrsChecks);
-        document.getElementById("updrs-param-fill").innerHTML = updrsChecks.join('\n');
-        // ---
-        var pdq8Checks = ['<button type="button" class="btn btn-primary" onClick="allCheck(pdq8)">Check Switch</button>'];
-        createChecks(pdq8,pdq8Checks);
-        document.getElementById("pdq8-param-fill").innerHTML = pdq8Checks.join('\n');
-        // ---
-        var pdq39Checks = ['<button type="button" class="btn btn-primary" onClick="allCheck(pdq39)">Check Switch</button>'];
-        createChecks(pdq39,pdq39Checks);
-        document.getElementById("pdq39-param-fill").innerHTML = pdq39Checks.join('\n');
-        // ---
-        var pdqcChecks = ['<button type="button" class="btn btn-primary" onClick="allCheck(pdqc)">Check Switch</button>'];
-        createChecks(pdqc,pdqcChecks);
-        document.getElementById("pdqc-param-fill").innerHTML = pdqcChecks.join('\n');
-        // --- 
-        var wearChecks = ['<button type="button" class="btn btn-primary" onClick="allCheck(wearables)">Check Switch</button>'];
-        createChecks(wearables,wearChecks);
-        document.getElementById("wear-param-fill").innerHTML = wearChecks.join('\n');
+        function renderParams(qarray,name) {
+            let init = '<button type="button" class="btn btn-primary" onClick="allCheck(' + name + ')">Check Switch</button>';
+            let paramFill = name + '-param-fill';
+            let checks = [init];
+            createChecks(qarray,checks);
+            document.getElementById(paramFill).innerHTML = checks.join('\n');
+        }
+
+        renderParams(nms,"nms");        
+        renderParams(hads,"hads");
+        renderParams(pdss,"pdss");
+        renderParams(updrs,"updrs");
+        renderParams(pdq8,"pdq8");
+        renderParams(pdq39,"pdq39");
+        renderParams(pdqc,"pdqc");
+        renderParams(wearables,"wearables");
+        
     </script>
 </html>
