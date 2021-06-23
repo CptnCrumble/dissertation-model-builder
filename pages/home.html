@@ -33,8 +33,7 @@
                 </button>
               </h2>
               <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="pdss-accordian" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                <div class="accordion-body" id="pdss-param-fill">                  
                 </div>
               </div>
             </div>
@@ -56,8 +55,7 @@
                   </button>
                 </h2>
                 <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="updrs-accordian" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                  <div class="accordion-body" id="updrs-param-fill">                    
                   </div>
                 </div>
               </div>
@@ -68,8 +66,7 @@
                   </button>
                 </h2>
                 <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="pdq8-accordian" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                  <div class="accordion-body" id="pdq8-param-fill">                    
                   </div>
                 </div>
               </div>
@@ -80,8 +77,7 @@
                   </button>
                 </h2>
                 <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="pdq39-accordian" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                  <div class="accordion-body" id="pdq39-param-fill">                    
                   </div>
                 </div>
               </div>
@@ -92,8 +88,7 @@
                   </button>
                 </h2>
                 <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="pdqc-accordian" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                  <div class="accordion-body" id="pdqc-param-fill">                    
                   </div>
                 </div>
               </div>
@@ -104,8 +99,7 @@
                   </button>
                 </h2>
                 <div id="collapse8" class="accordion-collapse collapse" aria-labelledby="wearable-accordian" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                  <div class="accordion-body" id="wear-param-fill">                    
                   </div>
                 </div>
               </div>
@@ -116,7 +110,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script>
-        // Data
+        // Data ------------------------------------
         const hads = [
             'Anxiety',
             'Depression',
@@ -325,7 +319,7 @@
             .concat(pdqc)
             .concat(wearables);
 
-        // Render subject select tag
+        // Render subject select tag -----------------------------------
         var dropDown = document.getElementById('subject');
         var fragment = document.createDocumentFragment();
         params.forEach(function(p, index) {
@@ -336,20 +330,66 @@
         });
         dropDown.appendChild(fragment);
         
-        // Render parameter select switches
+        // Render parameter select switches ------------------------------
+        function flipChecked(element) {
+            if(element.checked === false){
+                element.checked = true;
+            } else {
+                element.checked = false;
+            }
+        }
+
         function makeCheck(param) {
             return `<div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id=${param}>
             <label class="form-check-label" for=${param}>${param}</label>
         </div>`
         }
+        function createChecks(qarray,result) {
+            qarray.forEach( x => {
+                result.push(makeCheck(x));
+            })
+        }
 
-        var nmsChecks = [];
-        nms.forEach( x => {
-            nmsChecks.push(makeCheck(x));
-        });
+        function allCheck(array){
+            array.forEach((checkbox) => {
+                let x = document.getElementById(checkbox);
+                flipChecked(x);
+            })
+        }
+
+        var nmsChecks = ['<button type="button" class="btn btn-primary" onClick="allCheck(nms)">Check Switch</button>'];        
+        createChecks(nms,nmsChecks);
         var nmsHTML = nmsChecks.join('\n')
         var nmsFill = document.getElementById("nms-param-fill");
         nmsFill.innerHTML = nmsHTML;
+        // ---
+        var hadsChecks = ['<button type="button" class="btn btn-primary" onClick="allCheck(hads)">Check Switch</button>'];
+        createChecks(hads,hadsChecks);
+        document.getElementById("hads-param-fill").innerHTML = hadsChecks.join('\n');
+        // ---
+        var pdssChecks = ['<button type="button" class="btn btn-primary" onClick="allCheck(pdss)">Check Switch</button>'];
+        createChecks(pdss,pdssChecks);
+        document.getElementById("pdss-param-fill").innerHTML = pdssChecks.join('\n');
+        // ---
+        var updrsChecks = ['<button type="button" class="btn btn-primary" onClick="allCheck(updrs)">Check Switch</button>'];
+        createChecks(updrs,updrsChecks);
+        document.getElementById("updrs-param-fill").innerHTML = updrsChecks.join('\n');
+        // ---
+        var pdq8Checks = ['<button type="button" class="btn btn-primary" onClick="allCheck(pdq8)">Check Switch</button>'];
+        createChecks(pdq8,pdq8Checks);
+        document.getElementById("pdq8-param-fill").innerHTML = pdq8Checks.join('\n');
+        // ---
+        var pdq39Checks = ['<button type="button" class="btn btn-primary" onClick="allCheck(pdq39)">Check Switch</button>'];
+        createChecks(pdq39,pdq39Checks);
+        document.getElementById("pdq39-param-fill").innerHTML = pdq39Checks.join('\n');
+        // ---
+        var pdqcChecks = ['<button type="button" class="btn btn-primary" onClick="allCheck(pdqc)">Check Switch</button>'];
+        createChecks(pdqc,pdqcChecks);
+        document.getElementById("pdqc-param-fill").innerHTML = pdqcChecks.join('\n');
+        // --- 
+        var wearChecks = ['<button type="button" class="btn btn-primary" onClick="allCheck(wearables)">Check Switch</button>'];
+        createChecks(wearables,wearChecks);
+        document.getElementById("wear-param-fill").innerHTML = wearChecks.join('\n');
     </script>
 </html>
