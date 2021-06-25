@@ -1,20 +1,21 @@
 <html>
     <head>
+        <title>Model Builder</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     </head>
-    <body>
-        <h1>Model Builder</h1>        
+    <body class="p-3">
+        <h1 style="color:rgba(5, 79, 164, 0.575);">Model Builder</h1>
+        <h1 style="color:rgba(5, 79, 164, 0.575);">Step 1: Define data specification</h1>        
         <!-- Drop down for subject -->
-        <h2>SUBJECT</h2>
-        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="subject">            
-        </select>
+        <h2 style="color:rgb(0, 119, 255);">Select the SUBJECT of the model</h2>
+        <select class="form-select form-select-lg p-2 m-3" aria-label=".form-select-lg example" id="subject"></select>
 
-        <h2>PARAMETERS</h2>        
+        <h2 style="color:rgb(0, 119, 255);">Select the model PARAMETERS</h2>        
 
-          <div class="accordion" id="accordionExample">
+          <div class="accordion p-2 gap-3 mb-5" id="accordionExample">
             <div class="accordion-item">
               <h2 class="accordion-header" id="hads-accordian">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
@@ -102,10 +103,18 @@
                   <div class="accordion-body" id="wearables-param-fill">                    
                   </div>
                 </div>
-              </div>
-            
+              </div>            
           </div>
+
+        <div id="summary">
+            <button type="button" class="btn btn-outline-primary mb-2" onclick="summarize()">Check Specification</button>
+            <p style="color:rgb(0, 119, 255);" class="mb-2">Subject : <span style="color: black;" id="summary-value"></span></p>
+            <p style="color:rgb(0, 119, 255);" class="mb-2">Parameters : <span style="color: black;" id="summary-parameters"></span></p>            
+        </div>
         
+        <div id="summary">
+            <button type="button" class="btn btn-outline-success mu-4" onclick="">Submit Specification</button>          
+        </div>
     </body>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -319,6 +328,7 @@
             .concat(pdqc)
             .concat(wearables);
 
+        var checkedParameters = [];
         // Render subject select tag -----------------------------------
         var dropDown = document.getElementById('subject');
         var fragment = document.createDocumentFragment();
@@ -375,5 +385,12 @@
         renderParams(pdqc,"pdqc");
         renderParams(wearables,"wearables");
         
+        // Data spec summary
+        function summarize(){
+            document.getElementById("summary-value").innerHTML = document.getElementById("subject").value;
+            let params = document.getElementsByClassName("form-check-input");            
+            checkedParameters = Array.prototype.slice.call(params).filter(p => p.checked).map(p => p.id);
+            document.getElementById("summary-parameters").innerHTML = checkedParameters.join(', ');
+        }
     </script>
 </html>
