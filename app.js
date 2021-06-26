@@ -4,7 +4,7 @@ const prp = require('./src/preprocessing')
 const app = express();
 const port = 3000;
 app.use(express.json());
-//app.use(express.static('pages'));
+app.use('/static',express.static('static'));
 
 app.get("/",(req,res) => {
     res.sendFile(__dirname + '/pages/home.html');
