@@ -112,8 +112,9 @@
             <p style="color:rgb(0, 119, 255);" class="mb-2">Parameters : <span style="color: black;" id="summary-parameters"></span></p>            
         </div>
         
-        <div id="summary">
-            <button type="button" class="btn btn-outline-success mu-4" onclick="">Submit Specification</button>          
+        <div id="submission">
+            <button type="button" class="btn btn-outline-success mu-4" onclick="defineData()">Submit Specification</button>
+            <p id="test"></p>
         </div>
     </body>
 
@@ -328,7 +329,7 @@
             .concat(pdqc)
             .concat(wearables);
 
-        var checkedParameters = [];
+        var dataSpecification = {};
         // Render subject select tag -----------------------------------
         var dropDown = document.getElementById('subject');
         var fragment = document.createDocumentFragment();
@@ -387,10 +388,33 @@
         
         // Data spec summary
         function summarize(){
-            document.getElementById("summary-value").innerHTML = document.getElementById("subject").value;
+            let subject = document.getElementById("subject").value;
             let params = document.getElementsByClassName("form-check-input");            
-            checkedParameters = Array.prototype.slice.call(params).filter(p => p.checked).map(p => p.id);
+            let checkedParameters = Array.prototype.slice.call(params).filter(p => p.checked).map(p => p.id);
+            document.getElementById("summary-value").innerHTML = subject;
             document.getElementById("summary-parameters").innerHTML = checkedParameters.join(', ');
+            dataSpecification = {
+                "subject": subject,
+                "source" : checkedParameters
+            }
+        }
+
+        // POST data Spec to server
+        function putDataSpec(){
+            var xhttp = new XMLHttpRequest();            
+            xhttp.open("PUT", "/preprocessing/dataSpec", true);
+            xhttp.setRequestHeader("Content-type", "application/json");            
+            xhttp.send(JSON.stringify(dataSpecification));
+        }
+        function putValidData(){
+            var xhttp = new XMLHttpRequest();            
+            xhttp.open("PUT","/preprocessing/validData",true);
+            xhttp.setRequestHeader("Content-type","application/json");
+            xhttp.send(JSON.stringify(dataSpecification));
+        }
+        function defineData(){
+            putDataSpec();
+            putValidData();
         }
     </script>
 </html>
