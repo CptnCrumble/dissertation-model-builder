@@ -59,4 +59,17 @@ app.get("/preprocessing/tfprep", (req,res) => {
     }
 })
 
+app.get("/test",(req,res) => {
+    try {
+        let x = req.body;
+        if(Math.random() < 0.7){
+            res.json( {"result":req['subject']});
+        } else {
+            res.json( {"result":99999});
+        }
+    } catch (error) {
+        console.log('Nope');
+    }
+})
+
 app.listen(port, () => console.log('app is up'));
