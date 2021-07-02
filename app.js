@@ -6,10 +6,16 @@ const port = 3000;
 app.use(express.json());
 app.use('/static',express.static('static'));
 
+// UI pages ----------------------------------------------------
 app.get("/",(req,res) => {
     res.sendFile(__dirname + '/pages/home.html');
 })
 
+app.get("/model-runner",(req,res) => {
+    res.sendFile(__dirname + '/pages/model-runner.html')
+})
+
+// API endpoints -----------------------------------------------
 app.get("/preprocessing/dataSpec", (req,res) => {
     res.json(prp.dataSpec.getDataSpec());
 })
@@ -38,17 +44,6 @@ app.put("/preprocessing/validData", (req,res) => {
     }
 })
 
-app.get("/preprocessing/trainTest", (req,res) => {
-    try {
-        let x = req.body;
-        res.json( prp.trainTest.splitData(x['number'],x['timepoint'],x['data']));
-        res.statusCode = 200;
-    } catch (error) {
-        console.log('error performing requested data splitting' + error);
-        res.statusCode = 400;
-    }
-})
-
 app.get("/preprocessing/tfprep", (req,res) => {
     try {
         res.json(prp.tfprep.convertToTensor(req.body['trainTest'],req.body['dataSpec']));
@@ -61,9 +56,9 @@ app.get("/preprocessing/tfprep", (req,res) => {
 
 app.get("/test",(req,res) => {
     try {
-        let x = req.body;
+        let y = req.body['dataSpec']['subject'];
         if(Math.random() < 0.7){
-            res.json( {"result":req['subject']});
+            res.json( {"result":y});
         } else {
             res.json( {"result":99999});
         }
