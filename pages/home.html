@@ -113,7 +113,7 @@
         </div>
         
         <div id="submission">
-            <button type="button" class="btn btn-outline-success mu-4" onclick="defineData()">Submit Specification</button>
+            <button type="button" class="btn btn-outline-success mu-4" onclick="writeToDisk()">Submit Specification</button>
             <p id="test"></p>
         </div>
     </body>
@@ -191,6 +191,9 @@
                 "subject": subject,
                 "source" : checkedParameters
             }
+
+            putDataSpec();
+            putValidData();
         }
 
         // POST data Spec to server
@@ -200,15 +203,52 @@
             xhttp.setRequestHeader("Content-type", "application/json");            
             xhttp.send(JSON.stringify(dataSpecification));
         }
+        function getDataSpec(){
+            var xhttp = new XMLHttpRequest();            
+            xhttp.open("GET", "/preprocessing/dataSpec", true);
+            xhttp.setRequestHeader("Content-type", "application/json");            
+            xhttp.send(null);
+            return xhttp.response;
+        }
         function putValidData(){
             var xhttp = new XMLHttpRequest();            
             xhttp.open("PUT","/preprocessing/validData",true);
             xhttp.setRequestHeader("Content-type","application/json");
             xhttp.send(JSON.stringify(dataSpecification));
         }
-        function defineData(){
-            putDataSpec();
-            putValidData();
+        function getValidData(){
+            var xhttp = new XMLHttpRequest();            
+            xhttp.open("GET","/preprocessing/validData",true);
+            xhttp.setRequestHeader("Content-type","application/json");
+            xhttp.send(null);
+            return xhttp.response;
+        }
+        // function defineData(){
+        //     putDataSpec();
+        //     putValidData();
+        // }
+
+        // Generate Guid & write to disk
+        function createGuid() {  
+            function _p8(s) {  
+              var p = (Math.random().toString(16)+"000000000").substr(2,8);  
+              return s ? "-" + p.substr(0,4) + "-" + p.substr(4,4) : p ;  
+            }  
+            return _p8() + _p8(true) + _p8(true) + _p8();  
+        }
+
+        function writeToDisk(){
+          let model_id = createGuid();
+          let content = {
+            "model_id": model_id,
+            "data_spec": getDataSpec(),
+            "data": getValidData()
+          }
+          var xhttp = new XMLHttpRequest();            
+          xhttp.open("PUT","/writeModel",true);
+          xhttp.setRequestHeader("Content-type","application/json");
+          xhttp.send(JSON.stringify(content));
+          
         }
     </script>
 </html>

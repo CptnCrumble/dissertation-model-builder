@@ -44,6 +44,16 @@ app.put("/preprocessing/validData", (req,res) => {
     }
 })
 
+app.put("/writeModel", (req,res) => {
+    try {
+        prp.write.writeData(req.body);
+        res.statusCode = 200;
+    } catch (error) {
+        console.log('error writing model to server' + error)
+        res.statusCode = 400;
+    }
+})
+
 app.get("/preprocessing/tfprep", (req,res) => {
     try {
         res.json(prp.tfprep.convertToTensor(req.body['trainTest'],req.body['dataSpec']));

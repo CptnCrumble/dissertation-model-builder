@@ -1,4 +1,4 @@
 exports.dataSpec = require('./dataSpec');
 exports.validation = require('./validation');
-exports.trainTest = require('./trainTest');
+exports.write = require('./writeData');
 exports.tfprep = require('./tensorFlowPrep');
