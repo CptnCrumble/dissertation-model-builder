@@ -191,9 +191,8 @@
                 "subject": subject,
                 "source" : checkedParameters
             }
-
-            putDataSpec();
-            putValidData();
+            // putDataSpec();
+            // putValidData();
         }
 
         // POST data Spec to server
@@ -202,6 +201,7 @@
             xhttp.open("PUT", "/preprocessing/dataSpec", true);
             xhttp.setRequestHeader("Content-type", "application/json");            
             xhttp.send(JSON.stringify(dataSpecification));
+            console.log('put data spec go')
         }
         function getDataSpec(){
             var xhttp = new XMLHttpRequest();            
@@ -215,6 +215,7 @@
             xhttp.open("PUT","/preprocessing/validData",true);
             xhttp.setRequestHeader("Content-type","application/json");
             xhttp.send(JSON.stringify(dataSpecification));
+            console.log('pvd go')
         }
         function getValidData(){
             var xhttp = new XMLHttpRequest();            
@@ -241,7 +242,7 @@
           let model_id = createGuid();
           let content = {
             "model_id": model_id,
-            "data_spec": getDataSpec(),
+            "data_spec": dataSpecification,
             "data": getValidData()
           }
           var xhttp = new XMLHttpRequest();            
