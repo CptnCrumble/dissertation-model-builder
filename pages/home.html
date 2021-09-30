@@ -113,7 +113,7 @@
         </div>
         
         <div id="submission">
-            <button type="button" class="btn btn-outline-success mu-4" onclick="writeToDisk()">Submit Specification</button>
+            <button type="button" class="btn btn-outline-success mu-4" onclick="getValidData()">Submit Specification</button>
             <p id="test"></p>
         </div>
     </body>
@@ -122,6 +122,7 @@
     <script src="/static/parameters.js"></script>
     <script>
         var dataSpecification = {};
+        var validDataSet = {};
         // Render subject select tag -----------------------------------
         var dropDown = document.getElementById('subject');
         var fragment = document.createDocumentFragment();
@@ -191,43 +192,27 @@
                 "subject": subject,
                 "source" : checkedParameters
             }
-            // putDataSpec();
-            // putValidData();
+            
+            putValidData();
         }
 
         // POST data Spec to server
-        function putDataSpec(){
-            var xhttp = new XMLHttpRequest();            
-            xhttp.open("PUT", "/preprocessing/dataSpec", true);
-            xhttp.setRequestHeader("Content-type", "application/json");            
-            xhttp.send(JSON.stringify(dataSpecification));
-            console.log('put data spec go')
-        }
-        function getDataSpec(){
-            var xhttp = new XMLHttpRequest();            
-            xhttp.open("GET", "/preprocessing/dataSpec", true);
-            xhttp.setRequestHeader("Content-type", "application/json");            
-            xhttp.send(null);
-            return xhttp.response;
-        }
         function putValidData(){
             var xhttp = new XMLHttpRequest();            
             xhttp.open("PUT","/preprocessing/validData",true);
             xhttp.setRequestHeader("Content-type","application/json");
             xhttp.send(JSON.stringify(dataSpecification));
-            console.log('pvd go')
         }
         function getValidData(){
             var xhttp = new XMLHttpRequest();            
             xhttp.open("GET","/preprocessing/validData",true);
-            xhttp.setRequestHeader("Content-type","application/json");
-            xhttp.send(null);
-            return xhttp.response;
+            xhttp.setRequestHeader("Content-type","application/json");            
+            xhttp.onload = function (e) {
+              validDataSet = JSON.parse(xhttp.responseText);
+              writeToDisk();
+            }
+            xhttp.send(null);            
         }
-        // function defineData(){
-        //     putDataSpec();
-        //     putValidData();
-        // }
 
         // Generate Guid & write to disk
         function createGuid() {  
@@ -238,12 +223,12 @@
             return _p8() + _p8(true) + _p8(true) + _p8();  
         }
 
-        function writeToDisk(){
+        function writeToDisk(){          
           let model_id = createGuid();
           let content = {
             "model_id": model_id,
             "data_spec": dataSpecification,
-            "data": getValidData()
+            "data": validDataSet
           }
           var xhttp = new XMLHttpRequest();            
           xhttp.open("PUT","/writeModel",true);
