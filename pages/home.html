@@ -204,6 +204,7 @@
             xhttp.send(JSON.stringify(dataSpecification));
         }
         function getValidData(){
+            alert("this can take a while.\nI'll let you know when its ready.")
             var xhttp = new XMLHttpRequest();            
             xhttp.open("GET","/preprocessing/validData",true);
             xhttp.setRequestHeader("Content-type","application/json");            
@@ -234,7 +235,7 @@
           xhttp.open("PUT","/writeModel",true);
           xhttp.setRequestHeader("Content-type","application/json");
           xhttp.send(JSON.stringify(content));
-          
+          alert("file" + model_id.toString() + "has been written into the data directory.")
         }
     </script>
 </html>
