@@ -1,0 +1,241 @@
+<html>
+    <head>
+        <title>Model Builder</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    </head>
+    <body class="p-3">
+        <h1 style="color:rgba(5, 79, 164, 0.575);">Model Builder</h1>
+        <h1 style="color:rgba(5, 79, 164, 0.575);">Step 1: Define data specification</h1>        
+        <!-- Drop down for subject -->
+        <h2 style="color:rgb(0, 119, 255);">Select the SUBJECT of the model</h2>
+        <select class="form-select form-select-lg p-2 m-3" aria-label=".form-select-lg example" id="subject"></select>
+
+        <h2 style="color:rgb(0, 119, 255);">Select the model PARAMETERS</h2>        
+
+          <div class="accordion p-2 gap-3 mb-5" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="hads-accordian">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                  HADS                  
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="hads-accordian" data-bs-parent="#accordionExample">
+                <div class="accordion-body" id="hads-param-fill">                    
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="pdss-accordian">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  PDSS
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="pdss-accordian" data-bs-parent="#accordionExample">
+                <div class="accordion-body" id="pdss-param-fill">                  
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="nms-accordian">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                    NMS
+                  </button>
+                </h2>
+                <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="nms-accordian" data-bs-parent="#accordionExample">
+                  <div class="accordion-body" id="nms-param-fill">                    
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="updrs-accordian">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                    UPDRS
+                  </button>
+                </h2>
+                <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="updrs-accordian" data-bs-parent="#accordionExample">
+                  <div class="accordion-body" id="updrs-param-fill">                    
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="pdq8-accordian">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                    PDQ-8
+                  </button>
+                </h2>
+                <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="pdq8-accordian" data-bs-parent="#accordionExample">
+                  <div class="accordion-body" id="pdq8-param-fill">                    
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="pdq39-accordian">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                    PDQ-39
+                  </button>
+                </h2>
+                <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="pdq39-accordian" data-bs-parent="#accordionExample">
+                  <div class="accordion-body" id="pdq39-param-fill">                    
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="pdqc-accordian">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                    PDQ-C
+                  </button>
+                </h2>
+                <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="pdqc-accordian" data-bs-parent="#accordionExample">
+                  <div class="accordion-body" id="pdqc-param-fill">                    
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="wearable-accordian">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                    WEARABLE
+                  </button>
+                </h2>
+                <div id="collapse8" class="accordion-collapse collapse" aria-labelledby="wearable-accordian" data-bs-parent="#accordionExample">
+                  <div class="accordion-body" id="wearables-param-fill">                    
+                  </div>
+                </div>
+              </div>            
+          </div>
+
+        <div id="summary">
+            <button type="button" class="btn btn-outline-primary mb-2" onclick="summarize()">Check Specification</button>
+            <p style="color:rgb(0, 119, 255);" class="mb-2">Subject : <span style="color: black;" id="summary-value"></span></p>
+            <p style="color:rgb(0, 119, 255);" class="mb-2">Parameters : <span style="color: black;" id="summary-parameters"></span></p>            
+        </div>
+        
+        <div id="submission">
+            <button type="button" class="btn btn-outline-success mu-4" onclick="getValidData()">Submit Specification</button>
+            <p id="test"></p>
+        </div>
+    </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="/static/parameters.js"></script>
+    <script>
+        var dataSpecification = {};
+        var validDataSet = {};
+        // Render subject select tag -----------------------------------
+        var dropDown = document.getElementById('subject');
+        var fragment = document.createDocumentFragment();
+        params.forEach(function(p, index) {
+            var opt = document.createElement('option');
+            opt.innerHTML = p;
+            opt.value = p;
+            fragment.appendChild(opt);
+        });
+        dropDown.appendChild(fragment);
+        
+        // Render parameter select switches ------------------------------
+        function flipChecked(element) {
+            if(element.checked === false){
+                element.checked = true;
+            } else {
+                element.checked = false;
+            }
+        }
+
+        function makeCheck(param) {
+            return `<div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id=${param}>
+            <label class="form-check-label" for=${param}>${param}</label>
+        </div>`
+        }
+        function createChecks(qarray,result) {
+            qarray.forEach( x => {
+                result.push(makeCheck(x));
+            })
+        }
+
+        function allCheck(array){
+            array.forEach((checkbox) => {
+                let x = document.getElementById(checkbox);
+                flipChecked(x);
+            })
+        }
+
+        function renderParams(qarray,name) {
+            let init = '<button type="button" class="btn btn-primary" onClick="allCheck(' + name + ')">Check Switch</button>';
+            let paramFill = name + '-param-fill';
+            let checks = [init];
+            createChecks(qarray,checks);
+            document.getElementById(paramFill).innerHTML = checks.join('\n');
+        }
+
+        renderParams(nms,"nms");        
+        renderParams(hads,"hads");
+        renderParams(pdss,"pdss");
+        renderParams(updrs,"updrs");
+        renderParams(pdq8,"pdq8");
+        renderParams(pdq39,"pdq39");
+        renderParams(pdqc,"pdqc");
+        renderParams(wearables,"wearables");
+        
+        // Data spec summary
+        function summarize(){
+            let subject = document.getElementById("subject").value;
+            let params = document.getElementsByClassName("form-check-input");            
+            let checkedParameters = Array.prototype.slice.call(params)
+                .filter(p => p.checked)
+                .map(p => p.id);
+            document.getElementById("summary-value").innerHTML = subject;
+            document.getElementById("summary-parameters").innerHTML = checkedParameters.join(', ');
+            dataSpecification = {
+                "subject": subject,
+                "source" : checkedParameters
+            }
+            
+            putValidData();
+        }
+
+        // POST data Spec to server
+        function putValidData(){
+            var xhttp = new XMLHttpRequest();            
+            xhttp.open("PUT","/preprocessing/validData",true);
+            xhttp.setRequestHeader("Content-type","application/json");
+            xhttp.send(JSON.stringify(dataSpecification));
+        }
+        function getValidData(){
+            alert("this can take a while.\nI'll let you know when its ready.")
+            var xhttp = new XMLHttpRequest();            
+            xhttp.open("GET","/preprocessing/validData",true);
+            xhttp.setRequestHeader("Content-type","application/json");            
+            xhttp.onload = function (e) {
+              validDataSet = JSON.parse(xhttp.responseText);
+              writeToDisk();
+            }
+            xhttp.send(null);            
+        }
+
+        // Generate Guid & write to disk
+        function createGuid() {  
+            function _p8(s) {  
+              var p = (Math.random().toString(16)+"000000000").substr(2,8);  
+              return s ? "-" + p.substr(0,4) + "-" + p.substr(4,4) : p ;  
+            }  
+            return _p8() + "-data";  
+        }
+
+        function writeToDisk(){          
+          let model_id = createGuid();
+          let content = {
+            "model_id": model_id,
+            "data_spec": dataSpecification,
+            "data": validDataSet
+          }
+          var xhttp = new XMLHttpRequest();            
+          xhttp.open("PUT","/writeModel",true);
+          xhttp.setRequestHeader("Content-type","application/json");
+          xhttp.send(JSON.stringify(content));
+          alert("file " + model_id.toString() + " has been written into the data directory.")
+        }
+    </script>
+</html>

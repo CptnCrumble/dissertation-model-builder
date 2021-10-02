@@ -4,24 +4,14 @@ const prp = require('./src/preprocessing')
 const app = express();
 const port = 3000;
 app.use(express.json());
+app.use('/static',express.static('static'));
 
+// UI pages ----------------------------------------------------
 app.get("/",(req,res) => {
-    console.log('home page');
+    res.sendFile(__dirname + '/pages/home.html');
 })
 
-app.get("/preprocessing/dataSpec", (req,res) => {
-    res.json(prp.dataSpec.getDataSpec());
-})
-
-app.put("/preprocessing/dataSpec", (req,res) => {
-    try {
-        prp.dataSpec.putDataSpec(req.body);
-        res.statusCode = 200;
-    } catch (error) {
-        console.log('error updating data spec: '+ error);
-        res.statusCode = 400;
-    }
-})
+// API endpoints -----------------------------------------------
 
 app.get("/preprocessing/validData", (req,res) => {
     res.json(prp.validation.getValidData());
@@ -37,23 +27,12 @@ app.put("/preprocessing/validData", (req,res) => {
     }
 })
 
-app.get("/preprocessing/trainTest", (req,res) => {
+app.put("/writeModel", (req,res) => {
     try {
-        let x = req.body;
-        res.json( prp.trainTest.splitData(x['number'],x['timepoint'],x['data']));
+        prp.write.writeData(req.body);
         res.statusCode = 200;
     } catch (error) {
-        console.log('error performing requested data splitting' + error);
-        res.statusCode = 400;
-    }
-})
-
-app.get("/preprocessing/tfprep", (req,res) => {
-    try {
-        res.json(prp.tfprep.convertToTensor(req.body['trainTest'],req.body['dataSpec']));
-        res.statusCode = 200;
-    } catch (error) {
-        console.log('error converting to tensors' + error)
+        console.log('error writing model to server' + error)
         res.statusCode = 400;
     }
 })
