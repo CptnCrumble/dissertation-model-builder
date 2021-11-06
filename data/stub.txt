@@ -1,1 +1,1 @@
-This file is here to preserve folder structure as .gitignore blocks master json from the public repository.
+This file is here to preserve folder structure as .gitignore blocks common json from the public repository.
