@@ -238,9 +238,9 @@ function putValidData(dataSpecObject) {
     parameterList.push(dataSpecObject['subject']);
 
     try {
-        let rawData = fs.readFileSync('data/master-data.json');
-        let masterData = JSON.parse(rawData);
-        let filtered = masterData.filter( x => validate(parameterList,x));
+        let rawData = fs.readFileSync('data/common-data.json');
+        let commonData = JSON.parse(rawData);
+        let filtered = commonData.filter( x => validate(parameterList,x));
         validData = trimData(parameterList,filtered);
         return validData;    
     } catch (error) {
